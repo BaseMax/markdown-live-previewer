@@ -1,6 +1,6 @@
 # Markdown Live Previewer
 
-A powerful, feature-rich Markdown editor with real-time preview, syntax highlighting, and HTML export capabilities. Built with HTML, TailwindCSS, and JavaScript.
+A powerful, feature-rich Markdown editor with real-time preview, syntax highlighting, and HTML export capabilities. Built with pure HTML, CSS, and JavaScript - no dependencies required!
 
 ![Markdown Live Previewer](https://img.shields.io/badge/markdown-editor-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -44,18 +44,15 @@ Simply open `index.html` in your web browser to start using the editor. No build
 ## 🛠️ Technologies Used
 
 - **HTML5** - Structure and layout
-- **TailwindCSS** - Responsive styling and design
-- **JavaScript** - Interactive functionality
-- **Marked.js** - Markdown parsing
-- **Highlight.js** - Code syntax highlighting
+- **CSS3** - Responsive styling with custom dark theme
+- **JavaScript (ES6+)** - Interactive functionality and custom markdown parser
 
 ## 📦 Dependencies
 
-All dependencies are loaded via CDN, so no installation is required:
-
-- TailwindCSS v3.x
-- Marked.js v11.1.1
-- Highlight.js v11.9.0
+**None!** This is a completely self-contained application with:
+- Custom markdown parser (no external libraries needed)
+- Custom syntax highlighting for code blocks
+- Pure CSS responsive design (no framework required)
 
 ## 🌐 Browser Support
 
@@ -131,8 +128,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 BaseMax
 
-## 🙏 Acknowledgments
+## 🎨 Design Philosophy
 
-- [Marked.js](https://marked.js.org/) for markdown parsing
-- [Highlight.js](https://highlightjs.org/) for syntax highlighting
-- [TailwindCSS](https://tailwindcss.com/) for styling
+This project demonstrates that powerful web applications can be built without relying on external libraries or frameworks. The entire application is self-contained in a single HTML file with custom implementations for:
+- Markdown parsing
+- Syntax highlighting
+- Responsive design

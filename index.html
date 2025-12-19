@@ -197,7 +197,7 @@
         /* Footer Styles */
         footer {
             background-color: #1f2937;
-            border-top: 1px solid: #374151;
+            border-top: 1px solid #374151;
             padding: 1rem;
             text-align: center;
             color: #9ca3af;
@@ -740,7 +740,6 @@ Start typing to see the magic happen! ✨`;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Export</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -842,6 +841,28 @@ Start typing to see the magic happen! ✨`;
             border-radius: 6px;
             margin: 1em 0;
         }
+        .hljs {
+            background-color: #1e293b;
+            padding: 1em;
+            border-radius: 6px;
+        }
+        .hljs-keyword, .hljs-selector-tag, .hljs-title, .hljs-section, .hljs-doctag, .hljs-name, .hljs-strong {
+            color: #ff79c6;
+            font-weight: bold;
+        }
+        .hljs-comment, .hljs-quote {
+            color: #6272a4;
+            font-style: italic;
+        }
+        .hljs-string, .hljs-attribute, .hljs-symbol, .hljs-bullet, .hljs-addition {
+            color: #50fa7b;
+        }
+        .hljs-number, .hljs-regexp, .hljs-literal, .hljs-link {
+            color: #bd93f9;
+        }
+        .hljs-function, .hljs-params {
+            color: #8be9fd;
+        }
     </style>
 </head>
 <body>
@@ -876,7 +897,7 @@ ${htmlContent}
         // Show notification
         function showNotification(message) {
             const notification = document.createElement('div');
-            notification.className = 'fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300';
+            notification.className = 'notification';
             notification.textContent = message;
             document.body.appendChild(notification);
             
