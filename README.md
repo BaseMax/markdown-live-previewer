@@ -2,6 +2,12 @@
 
 A powerful, feature-rich Markdown editor with real-time preview, syntax highlighting, and HTML export capabilities. Built with pure HTML, CSS, and JavaScript - no dependencies required!
 
+![Markdown Live Previewer](previre/1.png)
+
+![Markdown Live Previewer](previre/2.png)
+
+![Markdown Live Previewer](previre/3.png)
+
 ![Markdown Live Previewer](https://img.shields.io/badge/markdown-editor-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
