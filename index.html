@@ -490,13 +490,11 @@ Try it out!"
 
     <!-- Footer -->
     <footer>
-        <p>Made with ❤️ using HTML, CSS, and JavaScript</p>
+        <p>Made with ❤️ by Max Base using HTML, CSS, and JavaScript</p>
     </footer>
 
     <script>
-        // Simple markdown parser
         function parseMarkdown(text) {
-            // Escape HTML
             function escapeHtml(unsafe) {
                 return unsafe
                     .replace(/&/g, "&amp;")
@@ -506,11 +504,9 @@ Try it out!"
                     .replace(/'/g, "&#039;");
             }
 
-            // Simple syntax highlighting for code blocks
             function highlightCode(code, lang) {
                 const escaped = escapeHtml(code);
                 
-                // Basic keyword highlighting for common languages
                 const keywords = {
                     javascript: /\b(function|const|let|var|return|if|else|for|while|class|new|this|import|export|from|async|await|try|catch|throw)\b/g,
                     python: /\b(def|class|return|if|else|elif|for|while|import|from|as|try|except|finally|with|lambda|yield)\b/g,
@@ -520,18 +516,14 @@ Try it out!"
 
                 let highlighted = escaped;
                 
-                // Apply keyword highlighting
                 if (keywords[lang]) {
                     highlighted = highlighted.replace(keywords[lang], '<span class="hljs-keyword">$1</span>');
                 }
                 
-                // Highlight strings
                 highlighted = highlighted.replace(/(["'`])((?:\\\1|.)*?)\1/g, '<span class="hljs-string">$1$2$1</span>');
                 
-                // Highlight numbers
                 highlighted = highlighted.replace(/\b(\d+)\b/g, '<span class="hljs-number">$1</span>');
                 
-                // Highlight comments
                 highlighted = highlighted.replace(/(\/\/.*$)/gm, '<span class="hljs-comment">$1</span>');
                 highlighted = highlighted.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="hljs-comment">$1</span>');
                 highlighted = highlighted.replace(/(#.*$)/gm, '<span class="hljs-comment">$1</span>');
@@ -541,21 +533,17 @@ Try it out!"
 
             let html = text;
 
-            // Code blocks (must be processed before inline code)
             html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, lang, code) {
                 const highlighted = lang ? highlightCode(code.trim(), lang) : escapeHtml(code.trim());
                 return `<pre><code class="hljs">${highlighted}</code></pre>`;
             });
 
-            // Inline code
             html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
 
-            // Headers
             html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
             html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
             html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
 
-            // Bold and italic
             html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
             html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
@@ -563,24 +551,18 @@ Try it out!"
             html = html.replace(/\_\_(.*?)\_\_/g, '<strong>$1</strong>');
             html = html.replace(/\_(.*?)\_/g, '<em>$1</em>');
 
-            // Strikethrough
             html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
 
-            // Links
             html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
 
-            // Images
             html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
 
-            // Horizontal rules
             html = html.replace(/^---$/gim, '<hr>');
             html = html.replace(/^\*\*\*$/gim, '<hr>');
 
-            // Blockquotes
             html = html.replace(/^&gt; (.*)$/gim, '<blockquote>$1</blockquote>');
             html = html.replace(/^> (.*)$/gim, '<blockquote>$1</blockquote>');
 
-            // Tables
             html = html.replace(/^\|(.+)\|$/gim, function(match) {
                 const cells = match.split('|').filter(cell => cell.trim());
                 const cellTags = cells.map(cell => {
@@ -600,24 +582,19 @@ Try it out!"
                 return match;
             });
 
-            // Unordered lists
             html = html.replace(/^\* (.*)$/gim, '<li>$1</li>');
             html = html.replace(/^- (.*)$/gim, '<li>$1</li>');
             html = html.replace(/^• (.*)$/gim, '<li>$1</li>');
 
-            // Ordered lists
             html = html.replace(/^\d+\. (.*)$/gim, '<li>$1</li>');
 
-            // Wrap consecutive list items
             html = html.replace(/(<li>.*<\/li>\n)+/g, function(match) {
                 return `<ul>${match}</ul>`;
             });
 
-            // Line breaks
             html = html.replace(/\n\n/g, '</p><p>');
             html = html.replace(/\n/g, '<br>');
 
-            // Wrap in paragraph
             if (!html.startsWith('<')) {
                 html = '<p>' + html + '</p>';
             }
@@ -625,19 +602,16 @@ Try it out!"
             return html;
         }
 
-        // DOM elements
         const editor = document.getElementById('editor');
         const preview = document.getElementById('preview');
         const exportBtn = document.getElementById('exportBtn');
         const clearBtn = document.getElementById('clearBtn');
         const charCount = document.getElementById('charCount');
 
-        // Load saved content from localStorage
         const savedContent = localStorage.getItem('markdownContent');
         if (savedContent) {
             editor.value = savedContent;
         } else {
-            // Set default content
             editor.value = `# Welcome to Markdown Live Previewer
 
 This is a powerful markdown editor with **real-time preview**.
@@ -709,31 +683,24 @@ console.log(greet("World"));
 Start typing to see the magic happen! ✨`;
         }
 
-        // Update preview function
         function updatePreview() {
             const markdownText = editor.value;
             const htmlContent = parseMarkdown(markdownText);
             preview.innerHTML = htmlContent;
             
-            // Update character count
             charCount.textContent = `${markdownText.length} characters`;
             
-            // Save to localStorage
             localStorage.setItem('markdownContent', markdownText);
         }
 
-        // Real-time preview update
         editor.addEventListener('input', updatePreview);
 
-        // Initial preview update
         updatePreview();
 
-        // Export to HTML
         exportBtn.addEventListener('click', () => {
             const markdownText = editor.value;
             const htmlContent = parseMarkdown(markdownText);
             
-            // Create a complete HTML document
             const fullHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -870,7 +837,6 @@ ${htmlContent}
 </body>
 </html>`;
             
-            // Create a blob and download
             const blob = new Blob([fullHtml], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -881,11 +847,9 @@ ${htmlContent}
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             
-            // Show success message
             showNotification('HTML exported successfully!');
         });
 
-        // Clear button
         clearBtn.addEventListener('click', () => {
             if (confirm('Are you sure you want to clear the editor?')) {
                 editor.value = '';
@@ -894,7 +858,6 @@ ${htmlContent}
             }
         });
 
-        // Show notification
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.className = 'notification';
@@ -909,9 +872,7 @@ ${htmlContent}
             }, 2000);
         }
 
-        // Keyboard shortcuts
         editor.addEventListener('keydown', (e) => {
-            // Tab key for indentation
             if (e.key === 'Tab') {
                 e.preventDefault();
                 const start = editor.selectionStart;
@@ -921,7 +882,6 @@ ${htmlContent}
                 updatePreview();
             }
             
-            // Ctrl/Cmd + S to save (download)
             if ((e.ctrlKey || e.metaKey) && e.key === 's') {
                 e.preventDefault();
                 exportBtn.click();
