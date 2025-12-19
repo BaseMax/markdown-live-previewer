@@ -8,7 +8,7 @@ A powerful, feature-rich Markdown editor with real-time preview, syntax highligh
 ## 🚀 Features
 
 - ✨ **Real-time Preview** - See your markdown rendered instantly as you type
-- 🎨 **Syntax Highlighting** - Beautiful code blocks with language-specific syntax highlighting powered by Highlight.js
+- 🎨 **Syntax Highlighting** - Beautiful code blocks with language-specific syntax highlighting using custom implementation
 - 📥 **Export to HTML** - Download your markdown as a standalone HTML file
 - 📱 **Responsive Design** - Fully responsive layout that works on all devices
 - 💾 **Auto-save** - Your content is automatically saved to browser's local storage
